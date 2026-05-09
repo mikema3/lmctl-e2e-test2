@@ -38,6 +38,5 @@ export function tasksByStatus(tasks: Task[]): { pending: Task[]; done: Task[] } 
 }
 
 export function nextPendingTask(tasks: Task[]): Task | null {
-  if (tasks.length === 0) return null;
-  return tasks[0] ?? null;
+  return tasks.find(t => !t.done) ?? null;
 }
