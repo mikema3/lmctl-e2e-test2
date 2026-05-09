@@ -40,3 +40,9 @@ export function tasksByStatus(tasks: Task[]): { pending: Task[]; done: Task[] } 
 export function nextPendingTask(tasks: Task[]): Task | null {
   return tasks.find(t => !t.done) ?? null;
 }
+
+export function pendingTasksOldestFirst(tasks: Task[]): Task[] {
+  return tasks
+    .filter(t => !t.done)
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+}

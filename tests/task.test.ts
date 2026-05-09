@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { completeTask, nextPendingTask, tasksByStatus, type Task } from '../src/task.js';
+import { completeTask, nextPendingTask, pendingTasksOldestFirst, tasksByStatus, type Task } from '../src/task.js';
 
 const sample: Task[] = [
   { id: 1, title: 'Email John', done: true,  createdAt: '2026-05-01T08:00:00Z' },
@@ -47,5 +47,18 @@ describe('nextPendingTask', () => {
 
   it('handles empty input', () => {
     expect(nextPendingTask([])).toBeNull();
+  });
+});
+
+describe('pendingTasksOldestFirst', () => {
+  it('returns only pending tasks', () => {
+    const out = pendingTasksOldestFirst(sample);
+    expect(out.every(t => !t.done)).toBe(true);
+    expect(out).toHaveLength(2);
+  });
+
+  it('returns empty when no tasks are pending', () => {
+    expect(pendingTasksOldestFirst([])).toEqual([]);
+    expect(pendingTasksOldestFirst(sample.map(t => ({ ...t, done: true })))).toEqual([]);
   });
 });
