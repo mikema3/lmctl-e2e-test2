@@ -1,0 +1,14 @@
+{
+  "name": "tinytodo",
+  "version": "0.1.0",
+  "description": "A tiny task tracker library: add, complete, and query pending tasks.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  }
+}
