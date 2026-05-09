@@ -40,4 +40,12 @@ describe('nextPendingTask', () => {
   it('returns the first task that is not done', () => {
     expect(nextPendingTask(sample)).toEqual(sample[1]);
   });
+
+  it('returns null when all tasks are done', () => {
+    expect(nextPendingTask(sample.map(t => ({ ...t, done: true })))).toBeNull();
+  });
+
+  it('handles empty input', () => {
+    expect(nextPendingTask([])).toBeNull();
+  });
 });
