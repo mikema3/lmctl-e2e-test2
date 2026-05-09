@@ -44,5 +44,5 @@ export function nextPendingTask(tasks: Task[]): Task | null {
 export function pendingTasksOldestFirst(tasks: Task[]): Task[] {
   return tasks
     .filter(t => !t.done)
-    .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    .sort((a, b) => a.createdAt.localeCompare(b.createdAt));
 }

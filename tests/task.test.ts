@@ -57,6 +57,16 @@ describe('pendingTasksOldestFirst', () => {
     expect(out).toHaveLength(2);
   });
 
+  it('returns pending tasks oldest first', () => {
+    const tasks: Task[] = [
+      { id: 1, title: 'Old', done: false, createdAt: '2026-01-01T00:00:00Z' },
+      { id: 2, title: 'Newer', done: false, createdAt: '2026-03-01T00:00:00Z' },
+      { id: 3, title: 'Newest', done: false, createdAt: '2026-05-01T00:00:00Z' },
+    ];
+
+    expect(pendingTasksOldestFirst(tasks).map(t => t.title)).toEqual(['Old', 'Newer', 'Newest']);
+  });
+
   it('returns empty when no tasks are pending', () => {
     expect(pendingTasksOldestFirst([])).toEqual([]);
     expect(pendingTasksOldestFirst(sample.map(t => ({ ...t, done: true })))).toEqual([]);
